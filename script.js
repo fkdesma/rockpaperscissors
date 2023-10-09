@@ -19,7 +19,7 @@ function playGame(playerChoice, computerChoice){
        (computerChoice === 'SCISSORS' && playerChoice === 'PAPER') ||
        (computerChoice === 'PAPER' && playerChoice === 'ROCK')
     ){
-       computerChoice++
+       computerScore++
        roundWinner = 'computer'
     }
     updateScoreMessage(roundWinner,playerChoice,computerChoice)
@@ -58,7 +58,6 @@ scissorsBtn.addEventListener('click', () => handleClick('SCISSORS'))
 
 function handleClick(playerChoice) {
     if (isGameOver()) {
-        setFinalMessage()
       return
     }
   
@@ -66,10 +65,6 @@ function handleClick(playerChoice) {
     playGame(playerChoice, computerChoice)
     updateChoices(playerChoice, computerChoice)
     updateScore()
-  
-    if (isGameOver()) {
-      setFinalMessage()
-    }
   }
 
   function updateChoices(playerChoice, computerChoice) {
@@ -123,10 +118,4 @@ function updateScoreMessage(winner, playerChoice, computerChoice) {
   
     scoreMessage.textContent = `${playerChoice} ties with ${computerChoice}`
 }
-
-function setFinalMessage() {
-    return playerScore > computerScore
-      ? (textContent = 'You won!')
-      : (textContent = 'You lost...')
-  }
   
